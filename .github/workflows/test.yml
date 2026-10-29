@@ -1,0 +1,75 @@
+# Runs the unit tests and the integration test on PHP 8.2 and 8.5 against core's develop and MySQL.
+# The tests need classes that exist only in 7.1, so there is no 7.0 job.
+name: test
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - php: '8.2'
+            core: develop
+          - php: '8.5'
+            core: develop
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -proot"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+    env:
+      # A skipped integration test fails the run. SHOPCLASS_CORE_REF picks another core branch.
+      REQUIRE_CORE: '1'
+      # The tests find core next to the plugin; tests/integration/checkout.php reads these.
+      SHOPCLASS_CORE: ${{ github.workspace }}/osclass
+      DRIFT_DB_HOST: 127.0.0.1
+      DRIFT_DB_PORT: 3306
+      DRIFT_DB_USER: root
+      DRIFT_DB_PASS: root
+    steps:
+      - name: Check out the plugin
+        uses: actions/checkout@v4
+        with:
+          path: plugin
+
+      - name: Check out core
+        uses: actions/checkout@v4
+        with:
+          repository: mindstellar/shopclass
+          ref: ${{ matrix.core == 'develop' && vars.SHOPCLASS_CORE_REF || matrix.core }}
+          path: osclass
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mysqli, curl, mbstring, intl
+          tools: composer
+
+      # The integration test loads core's autoloader from oc-includes/vendor.
+      - name: Install core's PHP packages
+        working-directory: osclass
+        run: composer install --no-dev --no-interaction --prefer-dist
+
+      - name: Unit tests
+        working-directory: plugin
+        run: ./tests/run.sh
+
+      - name: Integration test
+        working-directory: plugin
+        run: php tests/integration/checkout.php

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Promotions">
+  <rect width="128" height="128" rx="24" fill="#5a2a4a"/>
+  <path d="M30 40h68v14a10 10 0 0 0 0 20v14H30V74a10 10 0 0 0 0-20z" fill="#f6e3ee"/>
+  <circle cx="54" cy="54" r="6" fill="#5a2a4a"/>
+  <circle cx="74" cy="74" r="6" fill="#5a2a4a"/>
+  <path d="M50 78l28-28" stroke="#5a2a4a" stroke-width="6" stroke-linecap="round"/>
+</svg>

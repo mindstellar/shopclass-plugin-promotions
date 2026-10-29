@@ -1,0 +1,403 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Promotions 0.1.1\n"
+"Report-Msgid-Bugs-To: https://github.com/mindstellar/shopclass-plugin-promotions/issues\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: \n"
+
+#: admin/offers.php:114
+msgid "%1$d of %2$d"
+msgstr ""
+
+#: admin/offers.php:69
+msgid "%d per shopper"
+msgstr ""
+
+#: src/Admin/OfferForm.php:87
+msgid "%s is a whole number, or leave it empty for no limit."
+msgstr ""
+
+#: src/Admin/OfferForm.php:77
+msgid "%s needs an amount, or leave it empty."
+msgstr ""
+
+#: src/Admin/OfferForm.php:144
+msgid "%s off"
+msgstr ""
+
+#: src/Admin/OfferForm.php:142
+msgid "%s%% off"
+msgstr ""
+
+#: admin/offer.php:66
+msgid "10% off"
+msgstr ""
+
+#: src/Admin/OfferForm.php:48
+msgid "A code is up to 40 letters, digits and dashes."
+msgstr ""
+
+#: admin/offer.php:102
+msgid "A day alone runs to the end of that day. Leave empty for no end."
+msgstr ""
+
+#: admin/offer.php:115
+msgid "A first order is one placed by a signed-in shopper with no other order waiting, paid, shipped or delivered."
+msgstr ""
+
+#: admin/offer.php:76
+msgid "A fixed amount"
+msgstr ""
+
+#: admin/offer.php:110
+msgid "A limit here means the shopper must be signed in. Leave empty for no limit."
+msgstr ""
+
+#: settings.php:28
+msgid "A line a theme may show while an automatic first-order offer is on, such as \"Get 150 off your first order\". Leave empty for none."
+msgstr ""
+
+#: src/Admin/OfferForm.php:63
+msgid "A percentage is more than 0 and at most 100."
+msgstr ""
+
+#: admin/offer.php:75
+msgid "A percentage of the items"
+msgstr ""
+
+#: admin/offers.php:97
+msgid "Add a coupon code, or an automatic discount such as one for a first order."
+msgstr ""
+
+#: admin/offer.php:52
+#: src/Admin/Screens.php:58
+msgid "Add offer"
+msgstr ""
+
+#: src/Plugin.php:163
+msgid "An offer in your cart has just run out. Check the new total and try again."
+msgstr ""
+
+#: src/Admin/Screens.php:55
+msgid "An offer with a code applies when a shopper types the code at checkout; one code per order. An offer without a code applies by itself to every cart that meets its rules, and these add up. Together they never take off more than the items and delivery cost."
+msgstr ""
+
+#: src/Admin/OfferForm.php:50
+msgid "Another offer already uses the code %s."
+msgstr ""
+
+#: src/Admin/OfferForm.php:107
+msgid "At most %d offers."
+msgstr ""
+
+#: admin/offers.php:104
+msgid "Automatic"
+msgstr ""
+
+#: admin/offer.php:53
+msgid "Back to offers"
+msgstr ""
+
+#: src/Admin/OfferForm.php:56
+msgid "Choose what the offer takes off."
+msgstr ""
+
+#: admin/offer.php:60
+msgid "Code"
+msgstr ""
+
+#: settings.php:22
+msgid "Coupon codes and automatic discounts."
+msgstr ""
+
+#: src/Admin/OfferForm.php:95
+msgid "Dates are written 2026-10-31 or 2026-10-31 18:00."
+msgstr ""
+
+#: admin/offers.php:109
+#: admin/offers.php:150
+msgid "Delete"
+msgstr ""
+
+#: admin/offers.php:148
+msgid "Delete \"%s\"?"
+msgstr ""
+
+#: admin/offer.php:71
+msgid "Discount"
+msgstr ""
+
+#: admin/offers.php:107
+msgid "Edit"
+msgstr ""
+
+#: admin/offer.php:52
+msgid "Edit offer"
+msgstr ""
+
+#: admin/offers.php:119
+msgid "Ended"
+msgstr ""
+
+#: admin/offer.php:100
+msgid "Ends"
+msgstr ""
+
+#: src/Admin/OfferForm.php:69
+msgid "Enter the amount the offer takes off."
+msgstr ""
+
+#: admin/offers.php:66
+msgid "First order only"
+msgstr ""
+
+#: settings.php:27
+msgid "First-order banner"
+msgstr ""
+
+#: admin/offer.php:82
+msgid "For a percentage, a number up to 100, such as 10. For a fixed amount, in %s. Not used for delivery."
+msgstr ""
+
+#: admin/offers.php:52
+#: src/Admin/OfferForm.php:146
+msgid "Free delivery"
+msgstr ""
+
+#: admin/offers.php:72
+msgid "From %s"
+msgstr ""
+
+#: admin/offer.php:81
+msgid "How much"
+msgstr ""
+
+#: src/Admin/OfferForm.php:102
+msgid "Keep the name under %d characters."
+msgstr ""
+
+#: admin/offer.php:86
+msgid "Leave empty for no cap."
+msgstr ""
+
+#: admin/offer.php:106
+msgid "Leave empty for no limit."
+msgstr ""
+
+#: admin/offer.php:97
+msgid "Leave empty to start now."
+msgstr ""
+
+#: admin/offer.php:91
+#: src/Admin/OfferForm.php:74
+msgid "Minimum order"
+msgstr ""
+
+#: admin/offer.php:85
+#: src/Admin/OfferForm.php:74
+msgid "Most it takes off"
+msgstr ""
+
+#: admin/offer.php:65
+msgid "Name at checkout"
+msgstr ""
+
+#: admin/offers.php:37
+msgid "No discount applies until they are fixed. Uninstalling the plugin clears them."
+msgstr ""
+
+#: admin/offers.php:96
+msgid "No offers yet"
+msgstr ""
+
+#: admin/offers.php:121
+msgid "Not started"
+msgstr ""
+
+#: admin/offers.php:117
+msgid "Off"
+msgstr ""
+
+#: admin/offers.php:85
+#: admin/offers.php:103
+#: src/Admin/Screens.php:61
+msgid "Offer"
+msgstr ""
+
+#: admin/offer.php:69
+msgid "Offer is on"
+msgstr ""
+
+#: admin/offers.php:31
+#: settings.php:19
+#: src/Admin/Screens.php:39
+#: src/Admin/Screens.php:53
+msgid "Offers and coupons"
+msgstr ""
+
+#: admin/offers.php:123
+msgid "On"
+msgstr ""
+
+#: admin/offer.php:23
+#: admin/offers.php:21
+#: src/Admin/Screens.php:82
+msgid "Only an administrator can manage offers."
+msgstr ""
+
+#: admin/offer.php:113
+msgid "Only for a shopper's first order"
+msgstr ""
+
+#: admin/offers.php:149
+msgid "Orders already placed keep their discount."
+msgstr ""
+
+#: admin/offers.php:63
+msgid "Orders over %s"
+msgstr ""
+
+#: index.php:59
+msgid "Promotions needs Shopclass 7.1 or later with shop mode and is switched off. Update Shopclass to use it."
+msgstr ""
+
+#: admin/offers.php:139
+msgid "Reset the uses of \"%s\"?"
+msgstr ""
+
+#: admin/offers.php:108
+#: admin/offers.php:141
+msgid "Reset uses"
+msgstr ""
+
+#: admin/offer.php:89
+#: admin/offers.php:87
+#: admin/offers.php:112
+msgid "Rules"
+msgstr ""
+
+#: admin/offer.php:118
+msgid "Save offer"
+msgstr ""
+
+#: admin/offers.php:131
+msgid "Settings"
+msgstr ""
+
+#: admin/offer.php:67
+msgid "Shown on the discount line, after the code. Leave empty to say what it takes off."
+msgstr ""
+
+#: src/Discounts.php:97
+msgid "Sign in to use this code."
+msgstr ""
+
+#: admin/offer.php:95
+msgid "Starts"
+msgstr ""
+
+#: admin/offers.php:89
+#: admin/offers.php:115
+msgid "Status"
+msgstr ""
+
+#: admin/offer.php:73
+#: admin/offers.php:86
+#: admin/offers.php:111
+msgid "Takes off"
+msgstr ""
+
+#: src/Admin/Screens.php:99
+#: src/Admin/Screens.php:108
+msgid "That offer no longer exists."
+msgstr ""
+
+#: admin/offers.php:140
+msgid "The count starts again from 0, and every shopper may use it again up to its limits."
+msgstr ""
+
+#: admin/offer.php:77
+msgid "The delivery charge"
+msgstr ""
+
+#: admin/offer.php:92
+msgid "The items must add up to this much. Leave empty for any order."
+msgstr ""
+
+#: src/Admin/Screens.php:103
+msgid "The offer is deleted. Orders already placed keep their discount."
+msgstr ""
+
+#: src/Admin/Screens.php:153
+msgid "The offer is saved."
+msgstr ""
+
+#: src/Admin/OfferForm.php:97
+msgid "The offer must end after it starts."
+msgstr ""
+
+#: admin/offers.php:36
+msgid "The stored offers could not be read"
+msgstr ""
+
+#: src/Admin/Screens.php:87
+msgid "The stored offers could not be read, so nothing was changed. Discounts are off until they are fixed."
+msgstr ""
+
+#: src/Discounts.php:89
+msgid "This code has expired."
+msgstr ""
+
+#: src/Discounts.php:94
+msgid "This code has run out."
+msgstr ""
+
+#: src/Discounts.php:99
+msgid "This code is for a first order only."
+msgstr ""
+
+#: src/Discounts.php:101
+msgid "This code is not valid."
+msgstr ""
+
+#: src/Discounts.php:91
+msgid "This code needs items worth at least %s."
+msgstr ""
+
+#: admin/offers.php:75
+msgid "Until %s"
+msgstr ""
+
+#: admin/offers.php:88
+#: admin/offers.php:113
+msgid "Uses"
+msgstr ""
+
+#: admin/offer.php:105
+#: src/Admin/OfferForm.php:83
+msgid "Uses in all"
+msgstr ""
+
+#: admin/offer.php:109
+#: src/Admin/OfferForm.php:83
+msgid "Uses per shopper"
+msgstr ""
+
+#: src/Admin/Screens.php:114
+msgid "Uses start again from 0, for every shopper."
+msgstr ""
+
+#: admin/offer.php:62
+msgid "What the shopper types at checkout: letters, digits and dashes. Capitals and spaces do not matter. Leave empty for an offer that applies by itself."
+msgstr ""
+
+#: src/Discounts.php:95
+msgid "You have already used this code."
+msgstr ""
+
+#: admin/offers.php:55
+msgid "at most %s"
+msgstr ""
