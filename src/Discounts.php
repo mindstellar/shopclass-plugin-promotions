@@ -17,8 +17,10 @@ use Closure;
 
 /**
  * Works out a cart's discount lines and its coupon refusal from the offers. Every automatic
- * offer that applies adds a line; the cart's one code adds a line or a refusal. Together they
- * never take off more than the items and shipping cost. Pure: no settings, no storage.
+ * offer that applies adds a line; the cart's one code adds a line or a refusal. First-order
+ * offers do not stack: a first-order code and an automatic first-order offer give only the
+ * larger. Together they never take off more than the items and shipping cost. Pure: no
+ * settings, no storage.
  */
 final class Discounts
 {
@@ -42,10 +44,14 @@ final class Discounts
         $lines    = array();
         $problem  = null;
         $matched  = false;
+        [$firstWinner, $firstOther] = self::firstOrderWinner($offers, $coupon, $cart, $now, $usage);
 
         foreach ($offers as $offer) {
             if ($offer->code === null) {
                 if (!$offer->live($now) || $offer->check($cart, $now, $usage) !== null) {
+                    continue;
+                }
+                if ($firstWinner === 'code' && $offer->firstOrderOnly) {
                     continue;
                 }
                 $amount = min($offer->amount($cart), $room);
@@ -60,15 +66,19 @@ final class Discounts
                 continue;
             }
             $matched = true;
-            $refused = $offer->check($cart, $now, $usage);
+            $refused = $offer->check($cart, $now, $usage) ?? ($firstWinner === 'auto' ? Offer::FIRST_ORDER_TAKEN : null);
             if ($refused !== null) {
-                $problem = array('code' => $refused, 'pointer' => self::POINTER, 'message' => self::message($refused, $offer, $currency, $usage, $money));
+                $problem = array('code' => $refused, 'pointer' => self::POINTER, 'message' => self::message($refused, $offer, $currency, $usage, $money, $firstOther));
                 continue;
             }
             // A code that takes nothing off (free delivery on a free parcel) still shows as applied.
             $amount  = min($offer->amount($cart), $room);
             $room   -= $amount;
-            $lines[] = self::line($offer, $offer->code . ' · ' . $offer->label, $amount, $currency);
+            $label   = $offer->code . ' · ' . $offer->label;
+            if ($firstWinner === 'code') {
+                $label = sprintf(__('%1$s (instead of %2$s)', 'promotions'), $label, $firstOther);
+            }
+            $lines[] = self::line($offer, $label, $amount, $currency);
         }
         if ($coupon !== null && !$matched) {
             $problem = array('code' => Offer::INVALID, 'pointer' => self::POINTER, 'message' => self::message(Offer::INVALID, null, $currency, $usage, $money));
@@ -78,11 +88,45 @@ final class Discounts
     }
 
     /**
-     * What the shopper reads under the code field.
+     * Which side wins when the cart's code and an automatic offer are both first-order offers,
+     * 'auto' or 'code', with the automatic offer's label; [null, ''] when they do not meet.
+     * A tie keeps the automatic offer.
+     *
+     * @param Offer[]             $offers
+     * @param array<string,mixed> $cart
+     *
+     * @return array{0:?string,1:string}
+     */
+    private static function firstOrderWinner(array $offers, ?string $coupon, array $cart, int $now, Usage $usage): array
+    {
+        $code  = null;
+        $auto  = 0;
+        $label = '';
+        foreach ($offers as $offer) {
+            if (!$offer->firstOrderOnly || !$offer->live($now) || $offer->check($cart, $now, $usage) !== null) {
+                continue;
+            }
+            if ($offer->code === null) {
+                $auto += $offer->amount($cart);
+                $label = $label === '' ? $offer->label : $label;
+            } elseif ($coupon !== null && $offer->code === $coupon) {
+                $code = $offer;
+            }
+        }
+        if ($code === null || $label === '') {
+            return array(null, '');
+        }
+
+        return $auto >= $code->amount($cart) ? array('auto', $label) : array('code', $label);
+    }
+
+    /**
+     * What the shopper reads under the code field. $other names the automatic offer that beat a
+     * first-order code.
      *
      * @param Closure(int,string):string $money
      */
-    public static function message(string $code, ?Offer $offer, string $currency, Usage $usage, Closure $money): string
+    public static function message(string $code, ?Offer $offer, string $currency, Usage $usage, Closure $money, string $other = ''): string
     {
         switch ($code) {
             case Offer::NOT_STARTED:
@@ -101,6 +145,8 @@ final class Discounts
                 return __('Sign in to use this code.', 'promotions');
             case Offer::FIRST_ORDER:
                 return __('This code is for a first order only.', 'promotions');
+            case Offer::FIRST_ORDER_TAKEN:
+                return sprintf(__('First-order offers do not add up. Your %s offer takes off more, so this code was not used.', 'promotions'), $other);
             default:
                 return __('This code is not valid.', 'promotions');
         }

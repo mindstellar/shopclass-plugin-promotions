@@ -12,6 +12,10 @@ msgstr ""
 msgid "%1$d of %2$d"
 msgstr ""
 
+#: src/Discounts.php:79
+msgid "%1$s (instead of %2$s)"
+msgstr ""
+
 #: admin/offers.php:69
 msgid "%d per shopper"
 msgstr ""
@@ -158,6 +162,10 @@ msgstr ""
 msgid "First-order banner"
 msgstr ""
 
+#: src/Discounts.php:149
+msgid "First-order offers do not add up. Your %s offer takes off more, so this code was not used."
+msgstr ""
+
 #: admin/offer.php:82
 msgid "For a percentage, a number up to 100, such as 10. For a fixed amount, in %s. Not used for delivery."
 msgstr ""
@@ -291,7 +299,7 @@ msgstr ""
 msgid "Shown on the discount line, after the code. Leave empty to say what it takes off."
 msgstr ""
 
-#: src/Discounts.php:101
+#: src/Discounts.php:145
 msgid "Sign in to use this code."
 msgstr ""
 
@@ -347,27 +355,27 @@ msgstr ""
 msgid "The stored offers could not be read, so nothing was changed. Discounts are off until they are fixed."
 msgstr ""
 
-#: src/Discounts.php:93
+#: src/Discounts.php:137
 msgid "This code has expired."
 msgstr ""
 
-#: src/Discounts.php:98
+#: src/Discounts.php:142
 msgid "This code has run out."
 msgstr ""
 
-#: src/Discounts.php:103
+#: src/Discounts.php:147
 msgid "This code is for a first order only."
 msgstr ""
 
-#: src/Discounts.php:105
+#: src/Discounts.php:151
 msgid "This code is not valid."
 msgstr ""
 
-#: src/Discounts.php:95
+#: src/Discounts.php:139
 msgid "This code needs items worth at least %s."
 msgstr ""
 
-#: src/Discounts.php:91
+#: src/Discounts.php:135
 msgid "This code starts on %s."
 msgstr ""
 
@@ -398,7 +406,7 @@ msgstr ""
 msgid "What the shopper types at checkout: letters, digits and dashes. Capitals and spaces do not matter. Leave empty for an offer that applies by itself."
 msgstr ""
 
-#: src/Discounts.php:99
+#: src/Discounts.php:143
 msgid "You have already used this code."
 msgstr ""
 

@@ -33,6 +33,8 @@ final class Offer
     public const USED        = 'coupon_used';
     public const SIGN_IN     = 'coupon_sign_in';
     public const FIRST_ORDER = 'coupon_first_order';
+    /** A first-order code beaten by an automatic first-order offer; not a check() result. */
+    public const FIRST_ORDER_TAKEN = 'coupon_first_order_taken';
 
     public const MAX_LABEL = 100;
 

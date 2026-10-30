@@ -77,6 +77,20 @@ pin('an automatic offer that does not apply is left out silently', array(array('
 })($eval(array($first, $welcome), cart(500 * RS, array('coupon' => 'WELCOME10')))));
 pin('a used first-order offer is left out silently too', array(), $eval(array($first), cart(2000 * RS), usage(array(), 1))['lines']);
 
+harness_section('first-order offers do not stack');
+$welcomeFirst = offer('welcome10', array('label' => '10% off', 'max_discount' => 500 * RS, 'first_order_only' => true));
+$r = $eval(array($first, $welcomeFirst), cart(1000 * RS, array('coupon' => 'WELCOME10')));
+pin('the better automatic offer stays and the code adds no line', array('promo.first-order'), array_column($r['lines'], 'id'));
+pin('the code is refused and says why', array('code' => 'coupon_first_order_taken', 'pointer' => '/coupon', 'message' => 'First-order offers do not add up. Your First order offer takes off more, so this code was not used.'), $r['problem']);
+$r = $eval(array($first, $welcomeFirst), cart(3000 * RS, array('coupon' => 'WELCOME10')));
+pin('the better code replaces the automatic offer', array('promo.welcome10'), array_column($r['lines'], 'id'));
+pin('its line says which offer it replaced', 'WELCOME10 · 10% off (instead of First order)', $r['lines'][0]['label']);
+pin('with no problem', null, $r['problem']);
+$r = $eval(array($first, $welcomeFirst), cart(1500 * RS, array('coupon' => 'WELCOME10')));
+pin('a tie keeps the automatic offer', array('promo.first-order'), array_column($r['lines'], 'id'));
+pin('a code not marked first order still stacks', array('promo.first-order', 'promo.welcome10'), array_column($eval(array($first, $welcome), cart(3000 * RS, array('coupon' => 'WELCOME10')))['lines'], 'id'));
+pin('a first-order code with no first-order offer on applies as before', array(array('promo.welcome10'), null), (static fn ($r) => array(array_column($r['lines'], 'id'), $r['problem']))($eval(array($welcomeFirst, $ship), cart(500 * RS, array('coupon' => 'WELCOME10')))));
+
 harness_section('never more than the cart');
 $big   = offer('big', array('code' => null, 'label' => 'Big', 'kind' => 'fixed', 'value' => 900 * RS));
 $half  = offer('half', array('label' => 'Half', 'value' => 5000));

@@ -31,10 +31,11 @@ Amounts are in the site's currency. An offer only serves carts in the currency i
 
 - With a code, the offer applies when the shopper types the code at checkout. Codes are letters, digits and dashes (up to 40). Capitals and spaces do not matter. A second code replaces the first.
 - Without a code, the offer applies to every cart that meets its rules. Automatic offers add up with each other and with the code.
+- First-order offers do not add up: when the code and an automatic offer are both first-order offers, only the one that takes off more applies (the automatic one on a tie). A beaten code is refused with `coupon_first_order_taken`; a winning code's line names the offer it replaced.
 - All discounts together never take off more than the items and delivery cost.
 - A per-shopper limit or first-order rule needs a signed-in shopper.
 - A first order is one placed while the shopper has no other order pending, paid, shipped or delivered.
-- A refused code shows under the code field and blocks the order. Codes: `coupon_invalid`, `coupon_not_started`, `coupon_expired`, `coupon_min`, `coupon_used`, `coupon_sign_in`, `coupon_first_order`.
+- A refused code shows under the code field and blocks the order. Codes: `coupon_invalid`, `coupon_not_started`, `coupon_expired`, `coupon_min`, `coupon_used`, `coupon_sign_in`, `coupon_first_order`, `coupon_first_order_taken`.
 - The browser sends only the code. Amounts are worked out on the server.
 - A use is counted when an order is placed, in one database statement per counter, so two orders cannot take the last use. A cancelled, failed or refunded order gives the use back.
 - **Reset uses** on the offers list restarts the count from 0 for every shopper.
