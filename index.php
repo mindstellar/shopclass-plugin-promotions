@@ -3,7 +3,7 @@
 Plugin Name: Promotions
 Plugin URI: https://github.com/mindstellar/shopclass-plugin-promotions
 Description: Coupon codes, automatic discounts, a first-order offer and usage limits for Shopclass shop orders. Every discount is worked out on the server, and refusals show at checkout.
-Version: 0.1.1
+Version: 0.2.0
 Author: Navjot Tomer (Mindstellar)
 Author URI: https://mindstellar.com
 Short Name: promotions

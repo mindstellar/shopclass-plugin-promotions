@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.0
+
+### Changed
+- First-order offers no longer stack: only the larger one applies.
+- Coupon messages and offer names use the shop's price format.
+
+### Fixed
+- Tax on a free delivery discount comes off the shipping, not the items.
+
 ## 0.1.1
 
 ### Changed
