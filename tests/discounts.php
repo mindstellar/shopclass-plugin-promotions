@@ -64,6 +64,7 @@ $c = cart(2000 * RS, array('coupon' => 'WELCOME10', 'shipping_lines' => array(ar
 $r = $eval(array($first, $welcome, $ship, $save5), $c);
 pin('automatic offers stack with each other and with one code', array('promo.first-order', 'promo.welcome10', 'promo.freeship'), array_column($r['lines'], 'id'));
 pin('at their amounts', array(-150 * RS, -200 * RS, -49 * RS), array_column($r['lines'], 'amount'));
+pin('only the free delivery line is marked as coming off the shipping', array(null, null, 'shipping'), array_map(static fn ($l) => $l['meta']['applies_to'] ?? null, $r['lines']));
 pin('the other code does not join in', false, in_array('promo.save5', array_column($r['lines'], 'id'), true));
 pin('a second code replaces the first', array('promo.first-order', 'promo.freeship', 'promo.save5'), array_column($eval(array($first, $welcome, $ship, $save5), array('coupon' => 'SAVE5') + $c)['lines'], 'id'));
 pin('an automatic offer that does not apply is left out silently', array(array('promo.welcome10'), null), (static function ($r) {

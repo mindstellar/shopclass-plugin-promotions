@@ -103,7 +103,10 @@ final class Discounts
     }
 
     /**
-     * @return array{id:string,label:string,amount:int,currency:string,meta:array{offer:string,code:?string}}
+     * A free delivery line says `applies_to: shipping` in its meta, so tax takes it off the
+     * shipping, not the items.
+     *
+     * @return array{id:string,label:string,amount:int,currency:string,meta:array<string,mixed>}
      */
     private static function line(Offer $offer, string $label, int $amount, string $currency): array
     {
@@ -112,7 +115,8 @@ final class Discounts
             'label'    => mb_substr($label, 0, 200, 'UTF-8'),
             'amount'   => -$amount,
             'currency' => $currency,
-            'meta'     => array('offer' => $offer->id, 'code' => $offer->code),
+            'meta'     => array('offer' => $offer->id, 'code' => $offer->code)
+                + ($offer->kind === Offer::FREE_SHIPPING ? array('applies_to' => 'shipping') : array()),
         );
     }
 
