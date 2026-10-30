@@ -72,7 +72,7 @@ $rules = static function (Offer $o): string {
         $out[] = sprintf(__('From %s', 'promotions'), OfferForm::show($o->starts));
     }
     if ($o->ends > 0) {
-        $out[] = sprintf(__('Until %s', 'promotions'), OfferForm::show($o->ends));
+        $out[] = sprintf(__('Until %s', 'promotions'), OfferForm::showEnd($o->ends));
     }
 
     return $out === array() ? '—' : implode(' · ', $out);

@@ -273,9 +273,19 @@ final class Plugin
         return preg_match('/^\d{1,12}(\.\d{1,6})?$/', $text) === 1 ? Money::toMicros($text) : null;
     }
 
+    /** An amount the way the cart shows prices, e.g. "₹5,000", with the currency's symbol. */
     public static function money(int $micros, string $currency): string
     {
-        return Money::format($micros, $currency !== '' ? $currency : (string) osc_currency());
+        $code   = $currency !== '' ? $currency : (string) osc_currency();
+        $symbol = $code;
+        foreach (osc_get_currencies() as $row) {
+            if (strcasecmp((string) ($row['pk_c_code'] ?? ''), $code) === 0) {
+                $symbol = (string) ($row['s_description'] ?? '') !== '' ? (string) $row['s_description'] : $code;
+                break;
+            }
+        }
+
+        return (string) osc_format_price($micros, $symbol);
     }
 
     /**

@@ -99,6 +99,17 @@ namespace {
     {
         return 'INR';
     }
+    function osc_get_currencies()
+    {
+        return array(array('pk_c_code' => 'INR', 's_description' => '₹'), array('pk_c_code' => 'USD', 's_description' => '$'));
+    }
+    /** Core's price format for an en locale with the symbol first: no decimals on a whole amount. */
+    function osc_format_price($price, $symbol = null)
+    {
+        $units = $price / 1000000;
+
+        return $symbol . number_format($units, $units == floor($units) ? 0 : 2);
+    }
 
     /** The counters in memory, with the same never-below-zero rule as core's. */
     class ArrayStore implements \mindstellar\promotions\Store

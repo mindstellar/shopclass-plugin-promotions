@@ -16,19 +16,19 @@ msgstr ""
 msgid "%d per shopper"
 msgstr ""
 
-#: src/Admin/OfferForm.php:87
+#: src/Admin/OfferForm.php:88
 msgid "%s is a whole number, or leave it empty for no limit."
 msgstr ""
 
-#: src/Admin/OfferForm.php:77
+#: src/Admin/OfferForm.php:78
 msgid "%s needs an amount, or leave it empty."
 msgstr ""
 
-#: src/Admin/OfferForm.php:144
+#: src/Admin/OfferForm.php:145
 msgid "%s off"
 msgstr ""
 
-#: src/Admin/OfferForm.php:142
+#: src/Admin/OfferForm.php:143
 msgid "%s%% off"
 msgstr ""
 
@@ -36,7 +36,7 @@ msgstr ""
 msgid "10% off"
 msgstr ""
 
-#: src/Admin/OfferForm.php:48
+#: src/Admin/OfferForm.php:49
 msgid "A code is up to 40 letters, digits and dashes."
 msgstr ""
 
@@ -60,7 +60,7 @@ msgstr ""
 msgid "A line a theme may show while an automatic first-order offer is on, such as \"Get 150 off your first order\". Leave empty for none."
 msgstr ""
 
-#: src/Admin/OfferForm.php:63
+#: src/Admin/OfferForm.php:64
 msgid "A percentage is more than 0 and at most 100."
 msgstr ""
 
@@ -85,11 +85,11 @@ msgstr ""
 msgid "An offer with a code applies when a shopper types the code at checkout; one code per order. An offer without a code applies by itself to every cart that meets its rules, and these add up. Together they never take off more than the items and delivery cost."
 msgstr ""
 
-#: src/Admin/OfferForm.php:50
+#: src/Admin/OfferForm.php:51
 msgid "Another offer already uses the code %s."
 msgstr ""
 
-#: src/Admin/OfferForm.php:107
+#: src/Admin/OfferForm.php:108
 msgid "At most %d offers."
 msgstr ""
 
@@ -101,7 +101,7 @@ msgstr ""
 msgid "Back to offers"
 msgstr ""
 
-#: src/Admin/OfferForm.php:56
+#: src/Admin/OfferForm.php:57
 msgid "Choose what the offer takes off."
 msgstr ""
 
@@ -113,7 +113,7 @@ msgstr ""
 msgid "Coupon codes and automatic discounts."
 msgstr ""
 
-#: src/Admin/OfferForm.php:95
+#: src/Admin/OfferForm.php:96
 msgid "Dates are written 2026-10-31 or 2026-10-31 18:00."
 msgstr ""
 
@@ -146,7 +146,7 @@ msgstr ""
 msgid "Ends"
 msgstr ""
 
-#: src/Admin/OfferForm.php:69
+#: src/Admin/OfferForm.php:70
 msgid "Enter the amount the offer takes off."
 msgstr ""
 
@@ -163,7 +163,7 @@ msgid "For a percentage, a number up to 100, such as 10. For a fixed amount, in 
 msgstr ""
 
 #: admin/offers.php:52
-#: src/Admin/OfferForm.php:146
+#: src/Admin/OfferForm.php:147
 msgid "Free delivery"
 msgstr ""
 
@@ -175,7 +175,7 @@ msgstr ""
 msgid "How much"
 msgstr ""
 
-#: src/Admin/OfferForm.php:102
+#: src/Admin/OfferForm.php:103
 msgid "Keep the name under %d characters."
 msgstr ""
 
@@ -192,12 +192,12 @@ msgid "Leave empty to start now."
 msgstr ""
 
 #: admin/offer.php:91
-#: src/Admin/OfferForm.php:74
+#: src/Admin/OfferForm.php:75
 msgid "Minimum order"
 msgstr ""
 
 #: admin/offer.php:85
-#: src/Admin/OfferForm.php:74
+#: src/Admin/OfferForm.php:75
 msgid "Most it takes off"
 msgstr ""
 
@@ -291,7 +291,7 @@ msgstr ""
 msgid "Shown on the discount line, after the code. Leave empty to say what it takes off."
 msgstr ""
 
-#: src/Discounts.php:97
+#: src/Discounts.php:101
 msgid "Sign in to use this code."
 msgstr ""
 
@@ -335,7 +335,7 @@ msgstr ""
 msgid "The offer is saved."
 msgstr ""
 
-#: src/Admin/OfferForm.php:97
+#: src/Admin/OfferForm.php:98
 msgid "The offer must end after it starts."
 msgstr ""
 
@@ -347,24 +347,28 @@ msgstr ""
 msgid "The stored offers could not be read, so nothing was changed. Discounts are off until they are fixed."
 msgstr ""
 
-#: src/Discounts.php:89
+#: src/Discounts.php:93
 msgid "This code has expired."
 msgstr ""
 
-#: src/Discounts.php:94
+#: src/Discounts.php:98
 msgid "This code has run out."
 msgstr ""
 
-#: src/Discounts.php:99
+#: src/Discounts.php:103
 msgid "This code is for a first order only."
 msgstr ""
 
-#: src/Discounts.php:101
+#: src/Discounts.php:105
 msgid "This code is not valid."
 msgstr ""
 
-#: src/Discounts.php:91
+#: src/Discounts.php:95
 msgid "This code needs items worth at least %s."
+msgstr ""
+
+#: src/Discounts.php:91
+msgid "This code starts on %s."
 msgstr ""
 
 #: admin/offers.php:75
@@ -377,12 +381,12 @@ msgid "Uses"
 msgstr ""
 
 #: admin/offer.php:105
-#: src/Admin/OfferForm.php:83
+#: src/Admin/OfferForm.php:84
 msgid "Uses in all"
 msgstr ""
 
 #: admin/offer.php:109
-#: src/Admin/OfferForm.php:83
+#: src/Admin/OfferForm.php:84
 msgid "Uses per shopper"
 msgstr ""
 
@@ -394,7 +398,7 @@ msgstr ""
 msgid "What the shopper types at checkout: letters, digits and dashes. Capitals and spaces do not matter. Leave empty for an offer that applies by itself."
 msgstr ""
 
-#: src/Discounts.php:95
+#: src/Discounts.php:99
 msgid "You have already used this code."
 msgstr ""
 

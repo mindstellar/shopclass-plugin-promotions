@@ -40,7 +40,7 @@ $value = Screens::$retry['post'] ?? ($known === null ? array('kind' => Offer::PE
     'min_subtotal'     => $money($known->minSubtotal),
     'max_discount'     => $money($known->maxDiscount),
     'starts'           => OfferForm::show($known->starts),
-    'ends'             => OfferForm::show($known->ends),
+    'ends'             => OfferForm::showEnd($known->ends),
     'uses_limit'       => $count($known->usesLimit),
     'per_user_limit'   => $count($known->perUserLimit),
     'first_order_only' => $known->firstOrderOnly ? '1' : '',

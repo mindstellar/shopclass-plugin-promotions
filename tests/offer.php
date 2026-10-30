@@ -24,7 +24,7 @@ $used = array($all->usesKey() => 10, $all->userKey(7) => 1);
 pin('a good cart passes', null, $all->check(cart(600 * RS), $now, usage()));
 pin('off reads as not valid', Offer::INVALID, offer('a', array('on' => false))->check(cart(600 * RS), $now, usage()));
 pin('another currency reads as not valid', Offer::INVALID, offer('a', array('currency' => 'USD'))->check(cart(600 * RS), $now, usage()));
-pin('before it starts it reads as not valid', Offer::INVALID, $all->check(cart(600 * RS), $now - 101, usage()));
+pin('before it starts: not started', Offer::NOT_STARTED, $all->check(cart(600 * RS), $now - 101, usage()));
 pin('after it ends: expired', Offer::EXPIRED, $all->check(cart(600 * RS), $now + 100, usage()));
 pin('dates come before the minimum', Offer::EXPIRED, $all->check(cart(1 * RS), $now + 100, usage()));
 pin('under the minimum', Offer::MIN, $all->check(cart(499 * RS), $now, usage()));

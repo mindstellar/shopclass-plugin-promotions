@@ -27,6 +27,7 @@ final class Offer
 
     /** Refusal codes, in the order the checks run. */
     public const INVALID     = 'coupon_invalid';
+    public const NOT_STARTED = 'coupon_not_started';
     public const EXPIRED     = 'coupon_expired';
     public const MIN         = 'coupon_min';
     public const USED        = 'coupon_used';
@@ -206,7 +207,7 @@ final class Offer
 
     /**
      * Why this offer does not apply to the cart, as a refusal code, or null when it does.
-     * Checks run in order: on and in the cart's currency, dates, the minimum, uses left,
+     * Checks run in order: on and in the cart's currency, start and end dates, the minimum, uses left,
      * the shopper's uses left (a guest is asked to sign in), first order.
      *
      * @param array<string,mixed> $cart
@@ -217,7 +218,7 @@ final class Offer
             return self::INVALID;
         }
         if ($this->starts > 0 && $now < $this->starts) {
-            return self::INVALID;
+            return self::NOT_STARTED;
         }
         if ($this->ends > 0 && $now >= $this->ends) {
             return self::EXPIRED;

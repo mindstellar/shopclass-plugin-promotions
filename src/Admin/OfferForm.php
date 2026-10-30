@@ -16,6 +16,7 @@ namespace mindstellar\promotions\Admin;
 use DateTimeImmutable;
 use mindstellar\promotions\Offer;
 use mindstellar\promotions\Offers;
+use mindstellar\promotions\Plugin;
 
 /**
  * Reads the offer editor's post into an offer, checking every field on the server. Pure: the
@@ -134,14 +135,14 @@ final class OfferForm
         return array('offer' => $offer, 'errors' => array());
     }
 
-    /** "10% off", "150.00 INR off" or "Free delivery". */
+    /** "10% off", "₹150 off" or "Free delivery". */
     public static function defaultLabel(Offer $offer, string $currency): string
     {
         switch ($offer->kind) {
             case Offer::PERCENT:
                 return sprintf(__('%s%% off', 'promotions'), rtrim(rtrim(number_format($offer->value / 100, 2, '.', ''), '0'), '.'));
             case Offer::FIXED:
-                return sprintf(__('%s off', 'promotions'), rtrim(rtrim(number_format($offer->value / 1000000, 2, '.', ''), '0'), '.') . ' ' . $currency);
+                return sprintf(__('%s off', 'promotions'), Plugin::money($offer->value, $currency));
             default:
                 return __('Free delivery', 'promotions');
         }
@@ -151,6 +152,12 @@ final class OfferForm
     public static function show(int $time): string
     {
         return $time === 0 ? '' : date('Y-m-d H:i', $time);
+    }
+
+    /** An end time as the admin typed it: an end at midnight is the day before, which it runs to the end of. */
+    public static function showEnd(int $time): string
+    {
+        return $time === 0 ? '' : (date('H:i', $time) === '00:00' ? date('Y-m-d', $time - 1) : date('Y-m-d H:i', $time));
     }
 
     /**

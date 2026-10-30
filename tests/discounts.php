@@ -39,6 +39,7 @@ pin('a cart exactly at the minimum gets the coupon', array(1, null), array(count
 harness_section('refusal text');
 $messages = array();
 foreach (array(
+    'not started' => array(offer('c', array('starts' => $now + 86400)), cart(RS, array('coupon' => 'C')), usage()),
     'expired'     => array(offer('c', array('ends' => $now)), cart(RS, array('coupon' => 'C')), usage()),
     'min'         => array(offer('c', array('min_subtotal' => 999 * RS)), cart(RS, array('coupon' => 'C')), usage()),
     'run out'     => array(offer('c', array('uses_limit' => 2)), cart(RS, array('coupon' => 'C')), usage(array('uses:c' => 2))),
@@ -51,6 +52,7 @@ foreach (array(
     check($case . ' adds no line', $eval(array($o), $c, $u)['lines'] === array());
 }
 pin('each refusal says why', array(
+    'not started' => 'coupon_not_started: This code starts on 2025-10-10 08:53.',
     'expired'     => 'coupon_expired: This code has expired.',
     'min'         => 'coupon_min: This code needs items worth at least 999.00 INR.',
     'run out'     => 'coupon_used: This code has run out.',
@@ -58,6 +60,9 @@ pin('each refusal says why', array(
     'sign in'     => 'coupon_sign_in: Sign in to use this code.',
     'first order' => 'coupon_first_order: This code is for a first order only.',
 ), $messages);
+
+pin('a code starting at midnight names the day only', 'This code starts on 2026-11-01.', Discounts::message(Offer::NOT_STARTED, offer('c', array('starts' => strtotime('2026-11-01 00:00:00 UTC'))), 'INR', usage(), money()));
+pin('amounts read like the cart: symbol, no zero paise', array('₹5,000', '₹99.50'), array(mindstellar\promotions\Plugin::money(5000 * RS, 'INR'), mindstellar\promotions\Plugin::money(99500000, 'INR')));
 
 harness_section('stacking');
 $c = cart(2000 * RS, array('coupon' => 'WELCOME10', 'shipping_lines' => array(array('amount' => 49 * RS))));

@@ -41,7 +41,7 @@ harness_section('automatic and fixed');
 $r = $read($post(array('code' => '', 'kind' => 'fixed', 'value' => '150', 'min_subtotal' => '999', 'max_discount' => '', 'per_user_limit' => '', 'first_order_only' => '1')));
 pin('no code is automatic', null, $r['offer']->code);
 pin('fixed amount and minimum in micros', array(150 * RS, 999 * RS, 0), array($r['offer']->value, $r['offer']->minSubtotal, $r['offer']->maxDiscount));
-pin('its name', '150 INR off', $r['offer']->label);
+pin('its name, in the price format the shop uses', '₹150 off', $r['offer']->label);
 pin('the id comes from the name', 'offer', $r['offer']->id);
 pin('free delivery needs no amount', array(array(), 0, 'Free delivery'), (static fn ($r) => array($r['errors'], $r['offer']->value, $r['offer']->label))($read($post(array('kind' => 'free_shipping', 'value' => 'x')))));
 
@@ -73,6 +73,9 @@ pin('a start at its minute', strtotime('2026-11-01 09:00:00 UTC'), $r['offer']->
 pin('an end day runs to its end', strtotime('2026-12-01 00:00:00 UTC'), $r['offer']->ends);
 pin('a browser date-time is read too', strtotime('2026-11-01 09:00:00 UTC'), $read($post(array('starts' => '2026-11-01T09:00')))['offer']->starts);
 pin('shown back as typed', '2026-11-01 09:00', OfferForm::show($r['offer']->starts));
+pin('an end day is shown as the day typed, not the next midnight', '2026-11-30', OfferForm::showEnd($r['offer']->ends));
+pin('an end at a minute is shown at its minute', '2026-11-30 18:00', OfferForm::showEnd($read($post(array('ends' => '2026-11-30 18:00')))['offer']->ends));
+pin('the end day typed back reads the same', $r['offer']->ends, $read($post(array('ends' => OfferForm::showEnd($r['offer']->ends))))['offer']->ends);
 
 harness_section('editing');
 $edited = $read($post(array('code' => 'HELLO', 'value' => '20')), array($taken), $taken)['offer'];

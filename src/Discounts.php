@@ -30,7 +30,7 @@ final class Discounts
     /**
      * @param Offer[]                    $offers
      * @param array<string,mixed>        $cart  core's cart: subtotal, currency, user_id, coupon, shipping_lines
-     * @param Closure(int,string):string $money an amount for a message, e.g. "999.00 INR"
+     * @param Closure(int,string):string $money an amount for a message, e.g. "₹999"
      *
      * @return array{lines:array<int,array<string,mixed>>,problem:?array{code:string,pointer:string,message:string}}
      */
@@ -85,6 +85,10 @@ final class Discounts
     public static function message(string $code, ?Offer $offer, string $currency, Usage $usage, Closure $money): string
     {
         switch ($code) {
+            case Offer::NOT_STARTED:
+                $starts = $offer !== null ? $offer->starts : 0;
+
+                return sprintf(__('This code starts on %s.', 'promotions'), date(date('H:i', $starts) === '00:00' ? 'Y-m-d' : 'Y-m-d H:i', $starts));
             case Offer::EXPIRED:
                 return __('This code has expired.', 'promotions');
             case Offer::MIN:
