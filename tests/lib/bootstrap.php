@@ -67,8 +67,8 @@ namespace {
 
     // The typed events are plain classes: load them from a core checkout (SHOPCLASS_CORE, else the sibling one).
     spl_autoload_register(static function (string $class): void {
-        $dir  = rtrim(getenv('SHOPCLASS_CORE') ?: dirname(__DIR__, 3) . '/shopclass', '/') . '/oc-includes/osclass/classes/';
-        $path = $dir . str_replace('\\', '/', substr($class, strlen('mindstellar\\'))) . '.php';
+        $core = getenv('SHOPCLASS_CORE') ?: dirname(__DIR__, 3) . '/shopclass';
+        $path = core_class_file($core, str_replace('\\', '/', substr($class, strlen('mindstellar\\'))) . '.php');
         if (strncmp($class, 'mindstellar\\', 12) === 0 && strpos($class, 'promotions') === false && is_file($path)) {
             require $path;
         }

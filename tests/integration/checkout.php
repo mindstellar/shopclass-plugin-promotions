@@ -16,7 +16,7 @@
  */
 
 $core = rtrim(getenv('SHOPCLASS_CORE') ?: dirname(__DIR__, 3) . '/shopclass', '/');
-if (!is_file($core . '/oc-includes/osclass/classes/billing/CartPricer.php')) {
+if (!is_file($core . '/oc-includes/classes/billing/CartPricer.php') && !is_file($core . '/oc-includes/osclass/classes/billing/CartPricer.php')) {
     echo "SKIP  core has no cart pricer (billing/CartPricer.php)\n";
     exit(getenv('REQUIRE_CORE') === '1' ? 1 : 0);
 }
