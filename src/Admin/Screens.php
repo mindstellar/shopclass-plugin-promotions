@@ -58,7 +58,20 @@ final class Screens
                 array('icon' => 'bi-plus-circle-fill', 'url' => osc_route_admin_url(self::EDIT_ROUTE), 'title' => __('Add offer', 'promotions')),
             ),
         ));
-        osc_admin_plugin_page(self::EDIT_ROUTE, array('title' => __('Offer', 'promotions')));
+        osc_admin_plugin_page(self::EDIT_ROUTE, array(
+            'title'   => __('Offer', 'promotions'),
+            'heading' => static fn (): string => self::editTitle(),
+        ));
+    }
+
+    /** The offer screen's title: Edit for an offer that exists, else Add. */
+    public static function editTitle(): string
+    {
+        $id = Params::getParamString('offer');
+
+        return $id !== '' && Offers::find(Plugin::offers() ?? array(), $id) !== null
+            ? __('Edit offer', 'promotions')
+            : __('Add offer', 'promotions');
     }
 
     /** Whether the signed-in user may manage offers. */

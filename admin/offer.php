@@ -49,7 +49,7 @@ $value = Screens::$retry['post'] ?? ($known === null ? array('kind' => Offer::PE
 $v        = static fn (string $key): string => (string) ($value[$key] ?? '');
 $currency = strtoupper((string) osc_currency());
 
-osc_admin_page_head($id === '' ? __('Add offer', 'promotions') : __('Edit offer', 'promotions'), array(
+osc_admin_page_head(Screens::editTitle(), array(
     array('label' => __('Back to offers', 'promotions'), 'url' => osc_route_admin_url(Screens::ROUTE), 'variant' => 'dim'),
 ));
 osc_admin_form_open(array(
