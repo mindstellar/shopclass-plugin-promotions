@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.1
+
+### Fixed
+- The edit screen title shows once.
+
 ## 0.2.0
 
 ### Changed
