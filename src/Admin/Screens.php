@@ -31,11 +31,11 @@ final class Screens
     /** @var array{post:array<string,string>,errors:string[]}|null a refused save, for the editor to show again */
     public static ?array $retry = null;
 
-    /** The one entry, Billing > Offers and coupons: the admin_menu_init hook. The offer editor and the old settings URL light it. */
+    /** The one entry, Plugins > Promotions > Offers and coupons: the admin_menu_init hook. The offer editor and the old settings URL light it. */
     public static function menu(): void
     {
         osc_add_admin_submenu_page(
-            'billing',
+            'plugins',
             __('Offers and coupons', 'promotions'),
             osc_route_admin_url(self::ROUTE),
             'promotions-offers',

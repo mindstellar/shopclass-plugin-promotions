@@ -18,7 +18,7 @@ Coupon codes, automatic discounts, a first-order offer and usage limits for Shop
 
 ## Set up
 
-1. Open **Billing → Offers and coupons** and press **Add offer**.
+1. Open **Plugins → Promotions → Offers and coupons** and press **Add offer**.
 2. Fill **Code** (leave empty for an automatic offer), **Name at checkout** and **Offer is on**.
 3. Under **Discount**, pick what **Takes off**: a percentage of the items, a fixed amount, or the delivery charge. Enter **How much**. **Most it takes off** sets a cap.
 4. Under **Rules**, set any of **Minimum order**, **Starts**, **Ends**, **Uses in all**, **Uses per shopper** and **Only for a shopper's first order**.
